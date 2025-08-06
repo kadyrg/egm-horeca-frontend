@@ -6,6 +6,8 @@ import "../globals.css";
 import { getTranslations } from "next-intl/server";
 import { Header } from "@/components/layout/header";
 import { Inter } from 'next/font/google';
+import { TopBar } from "@/components/layout/top-bar";
+import { BottomNav } from "@/components/layout/bottom-nav";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,14 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 };
 
-export default async function Layout({
-  children,
-  params
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ro" }]
+};
+
+export default function Layout({ children, params } : { children: React.ReactNode; params: { locale: string } }) {
+  const { locale } = params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -38,8 +38,10 @@ export default async function Layout({
     <html lang={locale} className={inter.variable}>
       <body className={inter.className}>
         <NextIntlClientProvider>
-          <Header />
+          <TopBar />
+          <Header title={"EGM HOreca"} />
           {children}
+          <BottomNav />
           </NextIntlClientProvider>
       </body>
     </html>

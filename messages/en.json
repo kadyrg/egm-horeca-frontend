@@ -2,5 +2,9 @@
   "Meta": {
     "title": "EGM Horeca",
     "description": "Lorem ipsum"
+  },
+  "Header": {
+    "title": "EGM Horeca",
+    "searchPlaceholder": "Search..."
   }
 }

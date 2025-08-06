@@ -7,17 +7,7 @@ import type { Product } from "@/lib/types";
 import { getLocale } from "next-intl/server";
 import Image from "next/image"
 
-export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <Tops />
-      <div className="h-1000"></div>
-    </>
-  );
-};
-
-async function Tops() {
+export default async function ProductPage() {
   const locale = await getLocale();
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/top`, {
