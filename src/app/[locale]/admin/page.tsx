@@ -1,7 +1,7 @@
-export default function AdminPage() {
+export default async function DashboardPage() {
   return (
     <>
-      Admin
+      <div className="h-1000"></div>
     </>
   );
 };

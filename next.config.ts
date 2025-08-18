@@ -3,7 +3,13 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['192.168.1.130'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '192.168.1.130',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

@@ -3,6 +3,12 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import "../globals.css";
 import { Inter } from 'next/font/google';
+import { Toaster } from "@/components/client/ui/sonner"
+
+interface Props {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
 
 const inter = Inter({
   subsets: ['latin'],
@@ -10,21 +16,18 @@ const inter = Inter({
   display: 'swap',
 });
 
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "ro" }]
-};
-
-export default function Layout({ children, params } : { children: React.ReactNode; params: { locale: string } }) {
-  const { locale } = params;
+export default async function Layout({ children, params }: Props) {
+  const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  }
+  };
 
   return (
     <html lang={locale} className={inter.variable}>
       <body className={inter.className}>
         <NextIntlClientProvider>
           {children}
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,25 +1,26 @@
-import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { Header } from "@/components/layout/header";
-import { TopBar } from "@/components/layout/top-bar";
-import { BottomNav } from "@/components/layout/bottom-nav";
+import { Header } from "@/components/client/layout/header";
+import { TopBar } from "@/components/client/layout/top-bar";
+import { Footer } from "@/components/client/layout/footer";
+import { BottomNav } from "@/components/client/layout/bottom-nav";
+import { getRootLayoutMetadata } from "@/lib/api/metadata";
+import { StateInitializers } from "@/components/client/shared/state-initializers";
+import StoreProvider from "@/store/store-provider";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Meta");
+export default async function Layout({
+  children
+} : {
+  children: React.ReactNode
+}) {
+  const metadata = await getRootLayoutMetadata();
 
-  return {
-    title: t("title"),
-    description: t("description"),
-  };
-};
-
-export default function Layout({ children } : { children: React.ReactNode; }) {
   return (
-    <>
-      <TopBar />
-      <Header title={"EGM HOreca"} />
+    <StoreProvider>
+      <StateInitializers />
+      <TopBar metadata={metadata.topBar} />
+      <Header metadata={metadata.header} />
       {children}
-      <BottomNav />
-    </>
+      <Footer />
+      <BottomNav metadata={metadata.bottomNav} />
+    </StoreProvider>
   );
 };
