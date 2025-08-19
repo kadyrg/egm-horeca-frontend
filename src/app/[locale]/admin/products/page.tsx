@@ -8,12 +8,12 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/admin/ui/table";
 import { Badge } from "@/components/admin/ui/badge";
 import { ProductEdit } from "@/components/admin/shared/products/product-edit";
 import { ProductDelete } from "@/components/admin/shared/products/product-delete";
-import { ProductVariants } from "@/components/admin/shared/products/product-variants";
+import { Link } from "@/i18n/navigation";
 
 // interface Props {
 //   searchParams: Promise<{ page?: string }>;
@@ -62,15 +62,13 @@ export default async function ProductsPage() {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  {item.variantsCount} variants<ProductVariants />
+                  <Link href={`/admin/products/${item.id}/variants`}>
+                  <Badge variant={"outline"}>{item.variantsCount} variants</Badge></Link>
                 </TableCell>
                 <TableCell className="text-right">
                   <span className="flex gap-1 float-right">
-                    <ProductEdit
-                      product={item}
-                      allCategories={categories}
-                    />
-                    <ProductDelete id={item.id}/>
+                    <ProductEdit product={item} allCategories={categories} />
+                    <ProductDelete id={item.id} />
                   </span>
                 </TableCell>
               </TableRow>
@@ -80,4 +78,4 @@ export default async function ProductsPage() {
       }
     />
   );
-};
+}

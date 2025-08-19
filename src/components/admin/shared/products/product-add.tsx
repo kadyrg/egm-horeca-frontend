@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { DialogDrawer } from "@/components/admin/shared/dialog-drawer";
 import { CategoryListViewAll } from "@/lib/types/categories";
 import { Button } from "../../ui/button";
 import { useState } from "react";
-import { z } from "zod"
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -43,14 +43,10 @@ const formSchema = z.object({
   extraImage4: z.instanceof(File).optional(),
   extraImage5: z.instanceof(File).optional(),
   extraImage6: z.instanceof(File).optional(),
-})
+});
 
-function ProductAdd({
-  categories
-} : {
-  categories: CategoryListViewAll[]
-}) {
-  const [open, setOpen] = useState(false)
+function ProductAdd({ categories }: { categories: CategoryListViewAll[] }) {
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -63,12 +59,12 @@ function ProductAdd({
       stock: undefined,
       categoryId: undefined,
       status: true,
-      isTop: false
+      isTop: false,
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData()
+    const formData = new FormData();
     formData.append(
       "productIn",
       JSON.stringify({
@@ -81,7 +77,8 @@ function ProductAdd({
         status: values.status,
         isTop: values.isTop,
         categoryId: values.categoryId,
-      }));
+      }),
+    );
     if (values.mainImage) {
       formData.append("mainImage", values.mainImage);
     }
@@ -105,16 +102,14 @@ function ProductAdd({
     }
     try {
       await addProduct(formData);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
 
@@ -126,7 +121,10 @@ function ProductAdd({
       trigger={<Button size={"sm"}>Add Product</Button>}
       body={
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 min-h-0">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 min-h-0"
+          >
             <ScrollArea className="h-full">
               <div className="space-y-4 p-5">
                 <FormField
@@ -135,10 +133,7 @@ function ProductAdd({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          placeholder="English name"
-                          {...field}
-                        />
+                        <Input placeholder="English name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -150,10 +145,7 @@ function ProductAdd({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          placeholder="Romanian name"
-                          {...field}
-                        />
+                        <Input placeholder="Romanian name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -234,7 +226,9 @@ function ProductAdd({
                     <FormItem>
                       <FormControl>
                         <CategorySelect
-                          value={field.value ? field.value.toString() : undefined}
+                          value={
+                            field.value ? field.value.toString() : undefined
+                          }
                           onValueChange={(val) => field.onChange(Number(val))}
                           categories={categories}
                         />
@@ -394,16 +388,10 @@ function ProductAdd({
                   />
                 </div>
                 <div className="flex gap-1 justify-end">
-                  <Button
-                    size={"sm"}
-                    variant={"destructive"}
-                  >
+                  <Button size={"sm"} variant={"destructive"}>
                     Cancel
                   </Button>
-                  <Button
-                    size={"sm"}
-                    type="submit"
-                  >
+                  <Button size={"sm"} type="submit">
                     Add category
                   </Button>
                 </div>
@@ -414,6 +402,6 @@ function ProductAdd({
       }
     />
   );
-};
+}
 
 export { ProductAdd };

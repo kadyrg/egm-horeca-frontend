@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { DialogDrawer } from "@/components/admin/shared/dialog-drawer";
 import { EditButton } from "@/components/admin/shared/edit-button";
 import { useState } from "react";
-import { z } from "zod"
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -16,26 +16,23 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage
+  FormMessage,
 } from "../ui/form";
-import {
-  BadToast,
-  GoodToast
-} from "./toasts";
+import { BadToast, GoodToast } from "./toasts";
 import { ProductVariantTypesListView } from "@/lib/types/product-variant-types";
 import { editProductVariantType } from "@/app/actions/product-variant-types";
 
 const formSchema = z.object({
   nameEn: z.string().min(1).max(50),
   nameRo: z.string().min(1).max(50),
-})
+});
 
 function ProductVariantTypeEdit({
   productVariantType,
-} : {
-  productVariantType: ProductVariantTypesListView,
+}: {
+  productVariantType: ProductVariantTypesListView;
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,16 +46,14 @@ function ProductVariantTypeEdit({
     const body = JSON.stringify(values);
     try {
       await editProductVariantType(productVariantType.id, body);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
 
@@ -70,7 +65,10 @@ function ProductVariantTypeEdit({
       title={"Edit category"}
       body={
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 min-h-0">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 min-h-0"
+          >
             <ScrollArea className="h-full">
               <div className="space-y-5 p-5">
                 <FormField
@@ -100,16 +98,10 @@ function ProductVariantTypeEdit({
                   )}
                 />
                 <div className="flex gap-1 justify-end">
-                  <Button
-                    size={"sm"}
-                    variant={"destructive"}
-                  >
+                  <Button size={"sm"} variant={"destructive"}>
                     Cancel
                   </Button>
-                  <Button
-                    size={"sm"}
-                    type="submit"
-                  >
+                  <Button size={"sm"} type="submit">
                     Save changes
                   </Button>
                 </div>
@@ -120,6 +112,6 @@ function ProductVariantTypeEdit({
       }
     />
   );
-};
+}
 
 export { ProductVariantTypeEdit };

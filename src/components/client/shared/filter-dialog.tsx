@@ -1,8 +1,14 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/client/ui/dialog"
-import { FilterForm } from "./filter-form"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/client/ui/dialog";
+import { FilterForm } from "./filter-form";
 import { FilterButton } from "./filter-button";
 
-function FilterDialog({ ...props } : React.ComponentProps<typeof Dialog>) {
+function FilterDialog({ ...props }: React.ComponentProps<typeof Dialog>) {
   return (
     <Dialog {...props}>
       <DialogTrigger asChild>
@@ -16,6 +22,6 @@ function FilterDialog({ ...props } : React.ComponentProps<typeof Dialog>) {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
 export { FilterDialog };

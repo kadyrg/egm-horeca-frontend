@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { DialogDrawer } from "@/components/admin/shared/dialog-drawer";
 import { EditButton } from "@/components/admin/shared/edit-button";
 import { CategoryListView } from "@/lib/types/categories";
 import { useState } from "react";
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { updateCategory } from "@/app/actions/categories";
 import { toast } from "sonner";
@@ -24,13 +24,9 @@ const formSchema = z.object({
   nameEn: z.string().min(1).max(50),
   nameRo: z.string().min(1).max(50),
   image: z.instanceof(File).optional(),
-})
+});
 
-function CategoryEdit({
-  data
-}: {
-  data: CategoryListView
-}) {
+function CategoryEdit({ data }: { data: CategoryListView }) {
   const [open, setOpen] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,34 +34,32 @@ function CategoryEdit({
     defaultValues: {
       nameEn: data.nameEn,
       nameRo: data.nameRo,
-      image: undefined
+      image: undefined,
     },
-  })
+  });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData()
+    const formData = new FormData();
     formData.append(
       "categoryIn",
       JSON.stringify({
         nameEn: values.nameEn,
-        nameRo: values.nameRo
-      })
+        nameRo: values.nameRo,
+      }),
     );
     if (values.image) {
       formData.append("image", values.image);
     }
     try {
       await updateCategory(data.id, formData);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
 
@@ -87,10 +81,7 @@ function CategoryEdit({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input
-                      placeholder="English name"
-                      {...field}
-                    />
+                    <Input placeholder="English name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,10 +93,7 @@ function CategoryEdit({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input
-                      placeholder="Romanian name"
-                      {...field}
-                    />
+                    <Input placeholder="Romanian name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -139,10 +127,7 @@ function CategoryEdit({
               >
                 Cancel
               </Button>
-              <Button
-                size="sm"
-                type="submit"
-              >
+              <Button size="sm" type="submit">
                 Save changes
               </Button>
             </div>
@@ -151,6 +136,6 @@ function CategoryEdit({
       }
     />
   );
-};
+}
 
 export { CategoryEdit };

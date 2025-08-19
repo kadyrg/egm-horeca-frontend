@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
@@ -10,26 +10,20 @@ import { useState } from "react";
 function Delete({
   onDelete,
   successMessage,
-  failMessage
+  failMessage,
 }: {
   onDelete: () => Promise<void> | void;
   successMessage: string;
-  failMessage: string
+  failMessage: string;
 }) {
   const [open, setOpen] = useState<boolean>(false);
 
   async function handleClick() {
     try {
       await onDelete();
-      toast(
-        <GoodToast text={successMessage} />,
-        { position: "top-center" }
-      );
+      toast(<GoodToast text={successMessage} />, { position: "top-center" });
     } catch {
-      toast(
-        <BadToast text={failMessage} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={failMessage} />, { position: "top-center" });
     }
   }
 
@@ -52,10 +46,10 @@ function Delete({
           <Button
             onClick={() => setOpen(false)}
             variant={"outline"}
-             className="w-1/2"
-            >
-              Cancel
-            </Button>
+            className="w-1/2"
+          >
+            Cancel
+          </Button>
           <Button
             onClick={handleClick}
             variant={"destructive"}
@@ -67,6 +61,6 @@ function Delete({
       }
     />
   );
-};
+}
 
 export { Delete };

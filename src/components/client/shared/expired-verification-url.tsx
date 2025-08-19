@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 function ExpiredVerificationUrl() {
   const router = useRouter();
@@ -19,16 +19,16 @@ function ExpiredVerificationUrl() {
     }
     async function verify() {
       const res = await fetch(`/api/verify-email?token=${token}`, {
-        method: 'GET',
-        credentials: 'include',
+        method: "GET",
+        credentials: "include",
       });
       const data = await res.json();
       if (data.success) {
         router.push("/");
-        toast(`Verification success`)
+        toast(`Verification success`);
       } else {
         setError(true);
-      } 
+      }
       setLoading(false);
     }
     verify();
@@ -36,6 +36,6 @@ function ExpiredVerificationUrl() {
 
   if (loading) return null;
   if (error) return <p className="text-red-600">Token expired</p>;
-};
+}
 
 export { ExpiredVerificationUrl };

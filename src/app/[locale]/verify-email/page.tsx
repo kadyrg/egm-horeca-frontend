@@ -8,7 +8,9 @@ export default function VerifyEmailPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
-  const [status, setStatus] = useState<"loading" | "success" | "error" | "invalid">("loading");
+  const [status, setStatus] = useState<
+    "loading" | "success" | "error" | "invalid"
+  >("loading");
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function VerifyEmailPage() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token }),
-          credentials: 'include',
+          credentials: "include",
         });
 
         if (!res.ok) {

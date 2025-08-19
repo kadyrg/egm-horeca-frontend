@@ -5,7 +5,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/admin/ui/table";
 import { ProductVariantTypeAdd } from "@/components/admin/shared/product-variant-type-add";
 import { getProductVariantTypesAdmin } from "@/lib/api/product-variant-types";
@@ -44,7 +44,7 @@ export default async function ProductVariantTypesPage() {
                 <TableCell className="text-right">
                   <span className="flex gap-1 float-right">
                     <ProductVariantTypeEdit productVariantType={item} />
-                    <ProductVariantTypeDelete id={item.id}/>
+                    <ProductVariantTypeDelete id={item.id} />
                   </span>
                 </TableCell>
               </TableRow>
@@ -54,4 +54,4 @@ export default async function ProductVariantTypesPage() {
       }
     />
   );
-};
+}

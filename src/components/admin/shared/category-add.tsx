@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/client/ui/button";
 import { DialogDrawer } from "./dialog-drawer";
 import { useState } from "react";
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -21,8 +21,8 @@ import { Input } from "../ui/input";
 const formSchema = z.object({
   nameEn: z.string().min(1).max(50),
   nameRo: z.string().min(1).max(50),
-  image: z.instanceof(File)
-})
+  image: z.instanceof(File),
+});
 
 function CategoryAdd() {
   const [open, setOpen] = useState<boolean>(false);
@@ -32,26 +32,27 @@ function CategoryAdd() {
     defaultValues: {
       nameEn: "",
       nameRo: "",
-      image: undefined
+      image: undefined,
     },
-  })
+  });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData()
-    formData.append("categoryIn", JSON.stringify({nameEn: values.nameEn, nameRo: values.nameRo}));
+    const formData = new FormData();
+    formData.append(
+      "categoryIn",
+      JSON.stringify({ nameEn: values.nameEn, nameRo: values.nameRo }),
+    );
     formData.append("image", values.image);
     try {
       await addCategory(formData);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
   return (
@@ -73,10 +74,7 @@ function CategoryAdd() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        placeholder="English name"
-                        {...field}
-                      />
+                      <Input placeholder="English name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -88,10 +86,7 @@ function CategoryAdd() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        placeholder="Romanian name"
-                        {...field}
-                      />
+                      <Input placeholder="Romanian name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,10 +120,7 @@ function CategoryAdd() {
                 >
                   Cancel
                 </Button>
-                <Button
-                  size="sm"
-                  type="submit"
-                >
+                <Button size="sm" type="submit">
                   Add Category
                 </Button>
               </div>
@@ -138,6 +130,6 @@ function CategoryAdd() {
       />
     </>
   );
-};
+}
 
 export { CategoryAdd };

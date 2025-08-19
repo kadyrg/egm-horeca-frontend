@@ -5,7 +5,7 @@ type AddCategoryWindowState = {
 };
 
 const initialState: AddCategoryWindowState = {
-  state: false
+  state: false,
 };
 
 const addCategoryWindowSlice = createSlice({
@@ -13,10 +13,10 @@ const addCategoryWindowSlice = createSlice({
   initialState,
   reducers: {
     setAddCategoryWindowState(state, action: PayloadAction<boolean>) {
-      state.state = action.payload
+      state.state = action.payload;
     },
   },
 });
 
-export const { setAddCategoryWindowState } = addCategoryWindowSlice.actions
-export default addCategoryWindowSlice.reducer
+export const { setAddCategoryWindowState } = addCategoryWindowSlice.actions;
+export default addCategoryWindowSlice.reducer;

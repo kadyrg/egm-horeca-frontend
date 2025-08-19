@@ -1,10 +1,10 @@
 import { Link } from "@/i18n/navigation";
 import { MapPin, Phone } from "lucide-react";
 import { Language } from "../shared/language-switcher";
-import { TopBarMetadata } from "@/lib/types/types";
+import { TopBarMetadata } from "@/lib/types/metadata";
 import { cn } from "@/lib/utils";
 
-async function TopBar({ metadata } : { metadata: TopBarMetadata }) {
+async function TopBar({ metadata }: { metadata: TopBarMetadata }) {
   return (
     <div className="flex flex-col items-center px-3 pt-3 md:pt-[6px]">
       <div className="w-full max-w-7xl flex items-center justify-between">
@@ -22,10 +22,21 @@ async function TopBar({ metadata } : { metadata: TopBarMetadata }) {
       </div>
     </div>
   );
-};
+}
 
-function TopBarItem({ className, ...props }: React.ComponentProps<typeof Link>) {
-  return <Link className={cn('flex items-center gap-2 hover:text-foreground/70 text-[13px] truncate', className)} {...props} />
-};
+function TopBarItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof Link>) {
+  return (
+    <Link
+      className={cn(
+        "flex items-center gap-2 hover:text-foreground/70 text-[13px] truncate",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
 
 export { TopBar };

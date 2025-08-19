@@ -7,9 +7,9 @@ import { StateInitializers } from "@/components/client/shared/state-initializers
 import StoreProvider from "@/store/store-provider";
 
 export default async function Layout({
-  children
-} : {
-  children: React.ReactNode
+  children,
+}: {
+  children: React.ReactNode;
 }) {
   const metadata = await getRootLayoutMetadata();
 
@@ -23,4 +23,4 @@ export default async function Layout({
       <BottomNav metadata={metadata.bottomNav} />
     </StoreProvider>
   );
-};
+}

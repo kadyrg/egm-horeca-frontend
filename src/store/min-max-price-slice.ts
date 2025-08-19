@@ -5,7 +5,7 @@ type MinMaxPriceState = {
 };
 
 const initialState: MinMaxPriceState = {
-  minmax: [0, 0]
+  minmax: [0, 0],
 };
 
 const minMaxPriceSlice = createSlice({
@@ -13,10 +13,10 @@ const minMaxPriceSlice = createSlice({
   initialState,
   reducers: {
     setMinMaxPrice(state, action: PayloadAction<[number, number]>) {
-      state.minmax = action.payload
+      state.minmax = action.payload;
     },
   },
 });
 
-export const { setMinMaxPrice } = minMaxPriceSlice.actions
-export default minMaxPriceSlice.reducer
+export const { setMinMaxPrice } = minMaxPriceSlice.actions;
+export default minMaxPriceSlice.reducer;

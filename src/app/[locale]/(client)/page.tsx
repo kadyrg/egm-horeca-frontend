@@ -1,10 +1,7 @@
 import { Hero } from "@/components/client/shared/hero";
 import { HorizontalFlexProducts } from "@/components/client/shared/horizontal-flex-products";
 import { getHomePageMetadata } from "@/lib/api/metadata";
-import {
-  getNewProducts,
-  getTopProducts
-} from "@/lib/api/products";
+import { getNewProducts, getTopProducts } from "@/lib/api/products";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -14,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: metadata.title,
     description: metadata.description,
   };
-};
+}
 
 export default async function HomePage() {
   const metadata = await getHomePageMetadata();
@@ -22,20 +19,20 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <Tops title={metadata.tops}/>
-      <News title={metadata.news}/>
+      <Tops title={metadata.tops} />
+      <News title={metadata.news} />
     </>
   );
-};
+}
 
-async function Tops({ title } : { title: string }) {
-  const data = await getTopProducts()
+async function Tops({ title }: { title: string }) {
+  const data = await getTopProducts();
 
   return <HorizontalFlexProducts data={data} title={title} />;
-};
+}
 
-async function News({ title } : { title: string }) {
+async function News({ title }: { title: string }) {
   const data = await getNewProducts();
-  
+
   return <HorizontalFlexProducts data={data} title={title} />;
-};
+}

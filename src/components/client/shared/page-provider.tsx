@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -6,12 +6,12 @@ import { useEffect } from "react";
 type Props = {
   children: React.ReactNode;
   total: number;
-}
+};
 
 function PageProvider({ children, total }: Props) {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const pageParam = searchParams.get("page");
-   const currentPage = pageParam ? Number(pageParam) : undefined;
+  const currentPage = pageParam ? Number(pageParam) : undefined;
   const router = useRouter();
 
   useEffect(() => {
@@ -24,6 +24,6 @@ function PageProvider({ children, total }: Props) {
     }
   }, [pageParam, router]);
   return <>{children}</>;
-};
+}
 
 export { PageProvider };

@@ -4,10 +4,6 @@ interface Props {
 
 export default async function CategoryPage({ params }: Props) {
   const { categoryId } = await params;
-  
-  return (
-    <>
-      {categoryId}
-    </>
-  );
-};
+
+  return <>{categoryId}</>;
+}

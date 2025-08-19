@@ -4,4 +4,4 @@ export default async function DashboardPage() {
       <div className="h-1000"></div>
     </>
   );
-};
+}

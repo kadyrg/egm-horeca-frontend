@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Pagination,
@@ -8,11 +8,11 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/client/ui/pagination"
+} from "@/components/client/ui/pagination";
 import { useSearchParams } from "next/navigation";
 
 function AppPagination({ total }: { total: number }) {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
 
   return (
@@ -33,25 +33,35 @@ function AppPagination({ total }: { total: number }) {
         )}
         {total > 2 && currentPage > total - 1 && currentPage - 2 > 1 && (
           <PaginationItem>
-            <PaginationLink href={`?page=${currentPage - 2}`}>{currentPage - 2}</PaginationLink>
+            <PaginationLink href={`?page=${currentPage - 2}`}>
+              {currentPage - 2}
+            </PaginationLink>
           </PaginationItem>
         )}
         {currentPage > 2 && (
           <PaginationItem>
-            <PaginationLink href={`?page=${currentPage - 1}`}>{currentPage - 1}</PaginationLink>
+            <PaginationLink href={`?page=${currentPage - 1}`}>
+              {currentPage - 1}
+            </PaginationLink>
           </PaginationItem>
         )}
         <PaginationItem>
-          <PaginationLink isActive href="#">{currentPage}</PaginationLink>
+          <PaginationLink isActive href="#">
+            {currentPage}
+          </PaginationLink>
         </PaginationItem>
         {total - 1 > currentPage && (
           <PaginationItem>
-            <PaginationLink href={`?page=${currentPage + 1}`}>{currentPage + 1}</PaginationLink>
+            <PaginationLink href={`?page=${currentPage + 1}`}>
+              {currentPage + 1}
+            </PaginationLink>
           </PaginationItem>
         )}
-        {total > 3 && currentPage < 2  && (
+        {total > 3 && currentPage < 2 && (
           <PaginationItem>
-            <PaginationLink href={`?page=${currentPage + 2}`}>{currentPage + 2}</PaginationLink>
+            <PaginationLink href={`?page=${currentPage + 2}`}>
+              {currentPage + 2}
+            </PaginationLink>
           </PaginationItem>
         )}
         {currentPage < total - 2 && (
@@ -70,6 +80,6 @@ function AppPagination({ total }: { total: number }) {
       </PaginationContent>
     </Pagination>
   );
-};
+}
 
 export { AppPagination };

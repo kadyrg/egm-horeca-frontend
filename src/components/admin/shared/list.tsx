@@ -10,9 +10,9 @@ function List({
   last,
   totalPages,
   page,
-  searchPlaceholder
-} : {
-  title: string
+  searchPlaceholder,
+}: {
+  title: string;
   addFeature?: React.ReactNode;
   table: React.ReactNode;
   total: number;
@@ -20,7 +20,7 @@ function List({
   last: number;
   totalPages: number;
   page: number;
-  searchPlaceholder: string
+  searchPlaceholder: string;
 }) {
   return (
     <div className="h-full border rounded-lg flex flex-col overflow-hidden">
@@ -47,6 +47,6 @@ function List({
       </div>
     </div>
   );
-};
+}
 
 export { List };

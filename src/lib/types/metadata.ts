@@ -1,19 +1,3 @@
-export type Category = {
-  id: number;
-  name: string;
-  slug: string;
-};
-
-export type CategoryDetail = {
-  name: string;
-  image: string;
-  totalProducts: number;
-  totalPages: number;
-};
-
-
-// Metadata
-
 export type HeaderMetadata = {
   title: string;
   searchPlaceholder: string;
@@ -31,13 +15,12 @@ export type BottomNavMetadata = {
   likes: string;
   cart: string;
   profile: string;
-}
-      
+};
 
 export type RootLayout = {
-    header: HeaderMetadata;
-    topBar: TopBarMetadata;
-    bottomNav: BottomNavMetadata;
+  header: HeaderMetadata;
+  topBar: TopBarMetadata;
+  bottomNav: BottomNavMetadata;
 };
 
 export type HomePage = {
@@ -85,13 +68,12 @@ export type LoginPage = {
 
 export type SharedMetadata = {
   addToCart: string;
-}
+};
 
 export type VerifyEmailPage = {
   title: string;
   description: string;
 };
-
 
 // Cart Item
 
@@ -100,7 +82,6 @@ export type CartItem = {
   quantity: string;
 };
 
-
 // Auth
 
 export type Token = {
@@ -108,7 +89,19 @@ export type Token = {
   refreshToken: string;
 };
 
-
 export type UserProductLike = {
   productId: number;
+};
+
+export type Category = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
+export type CategoryDetail = {
+  name: string;
+  image: string;
+  totalProducts: number;
+  totalPages: number;
 };

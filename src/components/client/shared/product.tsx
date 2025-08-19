@@ -3,24 +3,24 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
-} from "@/components/client/ui/carousel"
-import Image from 'next/image'
+  CarouselPrevious,
+} from "@/components/client/ui/carousel";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/client/ui/button";
 import { Section } from "../ui/section";
 import { AddToCart } from "./add-to-cart";
 import { getProduct } from "@/lib/api/products";
 import { LikeButton } from "./like-button";
-import { ImageZoom } from "@/components/ui/shadcn-io/image-zoom";
+import { ImageZoom } from "@/components/client/ui/image-zoom";
 
 async function ProductDetail({
   slug,
   description,
-  checkoutNow
-} : {
+  checkoutNow,
+}: {
   slug: string;
-  description: string
+  description: string;
   addToCart: string;
   checkoutNow: string;
 }) {
@@ -50,9 +50,11 @@ async function ProductDetail({
               <CarouselPrevious className="static top-0 -left-0 -translate-y-0" />
               <CarouselNext className="static top-0 -right-0 -translate-y-0" />
             </div>
-            <LikeButton className="absolute top-4 right-4" productId={data.id} />
+            <LikeButton
+              className="absolute top-4 right-4"
+              productId={data.id}
+            />
           </div>
-          
         </Carousel>
         <div className="max-w-xl md:w-1/2">
           <div className="border-b">
@@ -63,13 +65,20 @@ async function ProductDetail({
               {data.category.name}
             </Link>
             <h1 className="text-xl md:text-2xl font-semibold">{data.name}</h1>
-            <h2 className="text-xl md:text-2xl font-semibold py-2 text-green-600">{data.price} lei</h2>
+            <h2 className="text-xl md:text-2xl font-semibold py-2 text-green-600">
+              {data.price} lei
+            </h2>
             <div className="flex gap-2 pt-2 py-4">
               <div className="basis-5/9">
                 <AddToCart productId={data.id} />
               </div>
               <div className="basis-4/9">
-                <Button className="w-full border-primary rounded-full text-primary hover:text-primary" variant={"outline"}>{checkoutNow}</Button>
+                <Button
+                  className="w-full border-primary rounded-full text-primary hover:text-primary"
+                  variant={"outline"}
+                >
+                  {checkoutNow}
+                </Button>
               </div>
             </div>
           </div>
@@ -81,6 +90,6 @@ async function ProductDetail({
       </div>
     </Section>
   );
-};
+}
 
 export { ProductDetail };

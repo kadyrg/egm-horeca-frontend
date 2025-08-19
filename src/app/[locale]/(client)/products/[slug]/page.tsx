@@ -11,13 +11,13 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = await params;
   const data = await getProduct({ slug: slug });
   return {
     title: data.name,
     description: data.description,
   };
-};
+}
 
 export async function generateStaticParams() {
   const fetchProducts = async () => {
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
     return res.json();
   };
 
-  const products = await fetchProducts()
+  const products = await fetchProducts();
 
   return [
     ...products.map((p: { slugEn: string }) => ({
@@ -40,10 +40,10 @@ export async function generateStaticParams() {
       productSlug: p.slugRo,
     })),
   ];
-};
+}
 
 export default async function ProductPage({ params }: Props) {
-  const { slug } = await params
+  const { slug } = await params;
   const metadata = await getProductPageMetadata();
 
   return (
@@ -60,15 +60,18 @@ export default async function ProductPage({ params }: Props) {
       <Related title={metadata.related} />
     </>
   );
-};
+}
 
-async function Related({ title } : { title: string }) {
-  const isDev = process.env.NODE_ENV === "development"
+async function Related({ title }: { title: string }) {
+  const isDev = process.env.NODE_ENV === "development";
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/top`, {
-    cache: isDev ? 'no-cache' : 'force-cache',
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products/top`,
+    {
+      cache: isDev ? "no-cache" : "force-cache",
+    },
+  );
   const data: Product[] = await res.json();
 
   return <HorizontalFlexProducts data={data} title={title} />;
-};
+}

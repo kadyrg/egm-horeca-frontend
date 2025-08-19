@@ -5,7 +5,7 @@ type UserProductLikesSlice = {
 };
 
 const initialState: UserProductLikesSlice = {
-  productIds: []
+  productIds: [],
 };
 
 export const userProductLikesSlice = createSlice({
@@ -13,20 +13,20 @@ export const userProductLikesSlice = createSlice({
   initialState,
   reducers: {
     setUserProductLikesState(state, action: PayloadAction<number[]>) {
-      state.productIds = action.payload
+      state.productIds = action.payload;
     },
     addUserProductLikeState(state, action: PayloadAction<number>) {
-      state.productIds.push(action.payload)
+      state.productIds.push(action.payload);
     },
     deleteUserProductLikeState(state, action: PayloadAction<number>) {
-      state.productIds = state.productIds.filter(id => id !== action.payload);
-    }
-  }
+      state.productIds = state.productIds.filter((id) => id !== action.payload);
+    },
+  },
 });
 
 export const {
   setUserProductLikesState,
   addUserProductLikeState,
-  deleteUserProductLikeState
-} = userProductLikesSlice.actions
-export default userProductLikesSlice.reducer
+  deleteUserProductLikeState,
+} = userProductLikesSlice.actions;
+export default userProductLikesSlice.reducer;

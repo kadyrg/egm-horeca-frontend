@@ -10,7 +10,10 @@ export async function POST(request: Request) {
     });
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
-      return NextResponse.json({ error: errData.message || "Verification failed" }, { status: res.status });
+      return NextResponse.json(
+        { error: errData.message || "Verification failed" },
+        { status: res.status },
+      );
     }
     const data = await res.json();
 
@@ -41,6 +44,9 @@ export async function POST(request: Request) {
     return response;
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  };
-};
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
+  }
+}

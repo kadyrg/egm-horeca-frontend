@@ -1,9 +1,7 @@
 import { Pencil } from "lucide-react";
 import { Button } from "../ui/button";
 
-function EditButton({
-  ...props
-}: React.ComponentProps<typeof Button>) {
+function EditButton({ ...props }: React.ComponentProps<typeof Button>) {
   return (
     <Button
       size="icon"
@@ -14,6 +12,6 @@ function EditButton({
       <Pencil />
     </Button>
   );
-};
+}
 
 export { EditButton };

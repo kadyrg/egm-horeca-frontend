@@ -5,7 +5,7 @@ type FilterWindowState = {
 };
 
 const initialState: FilterWindowState = {
-  state: false
+  state: false,
 };
 
 const filterWindowSlice = createSlice({
@@ -13,10 +13,10 @@ const filterWindowSlice = createSlice({
   initialState,
   reducers: {
     setFilterWindowState(state, action: PayloadAction<boolean>) {
-      state.state = action.payload
+      state.state = action.payload;
     },
   },
 });
 
-export const { setFilterWindowState } = filterWindowSlice.actions
-export default filterWindowSlice.reducer
+export const { setFilterWindowState } = filterWindowSlice.actions;
+export default filterWindowSlice.reducer;

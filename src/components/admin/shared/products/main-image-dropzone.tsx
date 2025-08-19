@@ -1,15 +1,12 @@
-'use client';
+"use client";
 
 import {
   Dropzone,
   DropzoneContent,
-  DropzoneEmptyState
-} from '@/components/ui/shadcn-io/dropzone';
-import { UploadIcon } from 'lucide-react';
-import {
-  useState,
-  useEffect
-} from 'react';
+  DropzoneEmptyState,
+} from "@/components/admin/ui/dropzone";
+import { UploadIcon } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface MainImageUploadProps {
   value?: File | null;
@@ -23,7 +20,7 @@ function ImageDropzone({ value, onChange }: MainImageUploadProps) {
     if (value) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        if (typeof e.target?.result === 'string') {
+        if (typeof e.target?.result === "string") {
           setFilePreview(e.target.result);
         }
       };
@@ -40,14 +37,14 @@ function ImageDropzone({ value, onChange }: MainImageUploadProps) {
 
   return (
     <Dropzone
-      className='w-full h-full aspect-5/6 p-0'
-      accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+      className="w-full h-full aspect-5/6 p-0"
+      accept={{ "image/*": [".png", ".jpg", ".jpeg"] }}
       onDrop={handleDrop}
       onError={console.error}
       src={value ? [value] : undefined}
     >
       <DropzoneEmptyState>
-        <div className='flex flex-col items-center justify-center'>
+        <div className="flex flex-col items-center justify-center">
           <div className="flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
             <UploadIcon size={16} />
           </div>
@@ -69,6 +66,6 @@ function ImageDropzone({ value, onChange }: MainImageUploadProps) {
       </DropzoneContent>
     </Dropzone>
   );
-};
+}
 
 export { ImageDropzone };

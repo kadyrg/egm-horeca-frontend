@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { CategoryListView } from "@/lib/types/categories";
 import {
@@ -7,13 +7,13 @@ import {
   TableHeader,
   TableBody,
   TableCell,
-  TableRow
+  TableRow,
 } from "../ui/table";
 import { Delete } from "./delete";
 import { deleteCategory } from "@/app/actions/categories";
 import { CategoryEdit } from "./category-edit";
 
-function CategoriesTable({ data } : { data: CategoryListView[] }) {
+function CategoriesTable({ data }: { data: CategoryListView[] }) {
   return (
     <Table>
       <TableHeader>
@@ -47,6 +47,6 @@ function CategoriesTable({ data } : { data: CategoryListView[] }) {
       </TableBody>
     </Table>
   );
-};
+}
 
 export { CategoriesTable };

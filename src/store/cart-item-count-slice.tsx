@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
 type CartItemCountState = {
   state: number;
 };
@@ -17,10 +16,11 @@ const cartItemCountSlice = createSlice({
       state.state = action.payload;
     },
     addCartItemCount(state) {
-      state.state += 1
+      state.state += 1;
     },
   },
 });
 
-export const { setCartItemCount, addCartItemCount } = cartItemCountSlice.actions;
+export const { setCartItemCount, addCartItemCount } =
+  cartItemCountSlice.actions;
 export default cartItemCountSlice.reducer;

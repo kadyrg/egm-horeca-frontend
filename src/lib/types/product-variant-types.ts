@@ -5,10 +5,10 @@ export type ProductVariantTypesListView = {
 };
 
 export type ProductVariantTypesListAdmin = {
-  data: ProductVariantTypesListView[]
+  data: ProductVariantTypesListView[];
   total: number;
   initial: number;
   last: number;
   totalPages: number;
   page: number;
-}
+};

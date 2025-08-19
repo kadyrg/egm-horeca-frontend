@@ -4,11 +4,11 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/client/ui/drawer"
+} from "@/components/client/ui/drawer";
 import { FilterForm } from "./filter-form";
 import { FilterButton } from "./filter-button";
 
-function FilterDrawer({ ...props } : React.ComponentProps<typeof Drawer>) {
+function FilterDrawer({ ...props }: React.ComponentProps<typeof Drawer>) {
   return (
     <Drawer {...props}>
       <DrawerTrigger asChild>
@@ -22,6 +22,6 @@ function FilterDrawer({ ...props } : React.ComponentProps<typeof Drawer>) {
       </DrawerContent>
     </Drawer>
   );
-};
+}
 
 export { FilterDrawer };

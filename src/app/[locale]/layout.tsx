@@ -1,9 +1,9 @@
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 import "../globals.css";
-import { Inter } from 'next/font/google';
-import { Toaster } from "@/components/client/ui/sonner"
+import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 interface Props {
   children: React.ReactNode;
@@ -11,16 +11,16 @@ interface Props {
 }
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export default async function Layout({ children, params }: Props) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  };
+  }
 
   return (
     <html lang={locale} className={inter.variable}>
@@ -32,4 +32,4 @@ export default async function Layout({ children, params }: Props) {
       </body>
     </html>
   );
-};
+}

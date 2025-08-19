@@ -18,7 +18,7 @@ function AddToCartButton({
   const dispatch = useDispatch();
 
   async function handleAddToCart() {
-    dispatch(addCartItemCount())
+    dispatch(addCartItemCount());
     startTransition(async () => {
       await addProductToCart(productId);
       toast(
@@ -26,7 +26,7 @@ function AddToCartButton({
           <Check />
           Product successfully added to your cart
         </div>,
-        { position: "top-center" }
+        { position: "top-center" },
       );
     });
   }

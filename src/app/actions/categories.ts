@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { revalidateTag } from "next/cache";
 
@@ -15,13 +15,16 @@ export async function addCategory(formData: FormData) {
   } catch (error) {
     throw error;
   }
-};
+}
 
 export async function deleteCategory(categoryId: number) {
   try {
-    const response = await fetch(`${process.env.ADMIN_API_URL}/categories/${categoryId}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `${process.env.ADMIN_API_URL}/categories/${categoryId}`,
+      {
+        method: "DELETE",
+      },
+    );
     if (!response.ok) {
       throw new Error();
     }
@@ -29,14 +32,17 @@ export async function deleteCategory(categoryId: number) {
   } catch (error) {
     throw error;
   }
-};
+}
 
 export async function updateCategory(categoryId: number, formData: FormData) {
   try {
-    const response = await fetch(`${process.env.ADMIN_API_URL}/categories/${categoryId}`, {
-      method: "PATCH",
-      body: formData,
-    });
+    const response = await fetch(
+      `${process.env.ADMIN_API_URL}/categories/${categoryId}`,
+      {
+        method: "PATCH",
+        body: formData,
+      },
+    );
     if (!response.ok) {
       throw new Error();
     }
@@ -44,4 +50,4 @@ export async function updateCategory(categoryId: number, formData: FormData) {
   } catch (error) {
     throw error;
   }
-};
+}

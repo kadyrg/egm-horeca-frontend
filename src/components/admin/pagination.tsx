@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "./ui/button";
@@ -9,23 +9,25 @@ function AdminPagination({
   last,
   total,
   totalPages,
-  page
-} : {
+  page,
+}: {
   initial: number;
   last: number;
   total: number;
   totalPages: number;
-  page: number
+  page: number;
 }) {
   const pathname = usePathname();
 
   return (
     <div className="flex gap-2 items-center">
-      <span className="text-sm text-slate-500">{initial}-{last} of {total}</span>
+      <span className="text-sm text-slate-500">
+        {initial}-{last} of {total}
+      </span>
       <div className="flex">
         <Link
-          href={`${pathname}/?page=${page-1}`}
-          className={`${page <= 1 && 'pointer-events-none'}`}
+          href={`${pathname}/?page=${page - 1}`}
+          className={`${page <= 1 && "pointer-events-none"}`}
         >
           <Button
             variant={"ghost"}
@@ -36,8 +38,8 @@ function AdminPagination({
           </Button>
         </Link>
         <Link
-          href={`${pathname}/?page=${page+1}`}
-          className={`${page >= totalPages && 'pointer-events-none'}`}
+          href={`${pathname}/?page=${page + 1}`}
+          className={`${page >= totalPages && "pointer-events-none"}`}
         >
           <Button
             variant={"ghost"}
@@ -50,6 +52,6 @@ function AdminPagination({
       </div>
     </div>
   );
-};
+}
 
 export { AdminPagination };

@@ -1,19 +1,19 @@
 import { Link } from "@/i18n/navigation";
-import Image from "next/image"
-import type { Product } from "@/lib/types/types";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { AddToCart } from "./add-to-cart";
 import { LikeButton } from "./like-button";
+import { Product } from "@/lib/types/products";
 
 function ProductCard({
   className,
-  data
-} : {
+  data,
+}: {
   className?: string;
-  data: Product
+  data: Product;
 }) {
   return (
-    <div className={cn('max-w-70 space-y-1', className)}>
+    <div className={cn("max-w-70 space-y-1", className)}>
       <Link href={`/products/${data.slug}`}>
         <Image
           src={`${process.env.BACKEND_URL}/${data.mainImage}`}
@@ -27,7 +27,9 @@ function ProductCard({
         <h1 className="truncate font-semibold md:text-[17px] pt-[6px] truncate w-9/10">
           <Link href={`/products/${data.slug}`}>{data.name}</Link>
         </h1>
-        <h2 className="text-lg md:text-xl text-green-600 font-bold">{data.price} lei</h2>
+        <h2 className="text-lg md:text-xl text-green-600 font-bold">
+          {data.price} lei
+        </h2>
       </div>
       <div className="flex w-full gap-1 overflow-hidden">
         <div className="w-full">
@@ -39,6 +41,6 @@ function ProductCard({
       </div>
     </div>
   );
-};
+}
 
 export { ProductCard };

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { DialogDrawer } from "@/components/admin/shared/dialog-drawer";
 import { EditButton } from "@/components/admin/shared/edit-button";
 import { ProductsListView } from "@/lib/types/products";
 import { CategoryListViewAll } from "@/lib/types/categories";
 import { useState } from "react";
-import { z } from "zod"
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -16,10 +16,7 @@ import {
   FormMessage,
 } from "@/components/client/ui/form";
 import { toast } from "sonner";
-import {
-  BadToast,
-  GoodToast
-} from "../toasts";
+import { BadToast, GoodToast } from "../toasts";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { ScrollArea } from "../../ui/scroll-area";
@@ -35,8 +32,10 @@ const formSchema = z.object({
   nameRo: z.string().min(1).max(50),
   descriptionEn: z.string().min(1),
   descriptionRo: z.string().min(1),
-  price: z.number().refine((val) => Number.isFinite(val) && Number(val.toFixed(2)) === val, {
-      message: 'Price must have exactly two decimal places',
+  price: z
+    .number()
+    .refine((val) => Number.isFinite(val) && Number(val.toFixed(2)) === val, {
+      message: "Price must have exactly two decimal places",
     }),
   stock: z.number(),
   categoryId: z.number(),
@@ -49,16 +48,16 @@ const formSchema = z.object({
   extraImage4: z.instanceof(File).optional(),
   extraImage5: z.instanceof(File).optional(),
   extraImage6: z.instanceof(File).optional(),
-})
+});
 
 function ProductEdit({
   product,
-  allCategories
-} : {
-  product: ProductsListView,
-  allCategories: CategoryListViewAll[]
+  allCategories,
+}: {
+  product: ProductsListView;
+  allCategories: CategoryListViewAll[];
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -76,7 +75,7 @@ function ProductEdit({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData()
+    const formData = new FormData();
 
     formData.append(
       "productIn",
@@ -90,7 +89,8 @@ function ProductEdit({
         status: values.status,
         isTop: values.isTop,
         categoryId: values.categoryId,
-      }));
+      }),
+    );
 
     if (values.mainImage) {
       formData.append("mainImage", values.mainImage);
@@ -121,16 +121,14 @@ function ProductEdit({
 
     try {
       await editProduct(product.id, formData);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
 
@@ -142,7 +140,10 @@ function ProductEdit({
       title={"Edit category"}
       body={
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 min-h-0">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 min-h-0"
+          >
             <ScrollArea className="h-full">
               <div className="space-y-5 p-5">
                 <FormField
@@ -209,13 +210,14 @@ function ProductEdit({
                           type="number"
                           step="0.01"
                           value={field.value}
-                          onChange={(e) => field.onChange(Number(e.target.value))}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
-                    )
-                  }
+                  )}
                 />
                 <FormField
                   control={form.control}
@@ -227,7 +229,9 @@ function ProductEdit({
                         <Input
                           type="number"
                           value={field.value}
-                          onChange={(e) => field.onChange(Number(e.target.value))}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -242,7 +246,9 @@ function ProductEdit({
                       <FormLabel>Category</FormLabel>
                       <FormControl>
                         <CategorySelect
-                          value={field.value ? field.value.toString() : undefined}
+                          value={
+                            field.value ? field.value.toString() : undefined
+                          }
                           onValueChange={(val) => field.onChange(Number(val))}
                           categories={allCategories}
                         />
@@ -293,9 +299,9 @@ function ProductEdit({
                       <FormLabel>Main image</FormLabel>
                       <FormControl>
                         <ImageDropzone
-                            value={field.value}
-                            onChange={field.onChange}
-                          />
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -422,16 +428,10 @@ function ProductEdit({
                   )}
                 />
                 <div className="flex gap-1 justify-end">
-                  <Button
-                    size={"sm"}
-                    variant={"destructive"}
-                  >
+                  <Button size={"sm"} variant={"destructive"}>
                     Cancel
                   </Button>
-                  <Button
-                    size={"sm"}
-                    type="submit"
-                  >
+                  <Button size={"sm"} type="submit">
                     Save changes
                   </Button>
                 </div>
@@ -442,6 +442,6 @@ function ProductEdit({
       }
     />
   );
-};
+}
 
 export { ProductEdit };

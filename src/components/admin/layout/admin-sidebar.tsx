@@ -1,8 +1,4 @@
-import {
-  Box,
-  Home,
-  UsersRound
-} from "lucide-react"
+import { Box, Home, UsersRound } from "lucide-react";
 
 import { CategoriesIcon } from "../../client/ui/icons";
 import { Link } from "@/i18n/navigation";
@@ -17,8 +13,8 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarTrigger
-  } from "../ui/sidebar";
+  SidebarTrigger,
+} from "../ui/sidebar";
 
 const items = [
   {
@@ -43,15 +39,15 @@ const items = [
     items: [
       {
         title: "Products",
-        url: "/admin/products"
+        url: "/admin/products",
       },
       {
         title: "Variant types",
-        url: "/admin/product-variant-types"
-      }
-    ]
+        url: "/admin/product-variant-types",
+      },
+    ],
   },
-]
+];
 
 function AdminSidebar() {
   return (
@@ -73,11 +69,12 @@ function AdminSidebar() {
                     <SidebarMenuSub>
                       {item.items.map((i) => (
                         <SidebarMenuSubItem key={i.title}>
-                          <Link href={i.url}>
-                            <SidebarMenuSubButton className="whitespace-nowrap">
-                              {i.title}
-                            </SidebarMenuSubButton>
-                          </Link>
+                          <SidebarMenuSubButton
+                            href={i.url}
+                            className="whitespace-nowrap"
+                          >
+                            {i.title}
+                          </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       ))}
                     </SidebarMenuSub>
@@ -90,6 +87,6 @@ function AdminSidebar() {
       </SidebarContent>
     </Sidebar>
   );
-};
+}
 
 export { AdminSidebar };

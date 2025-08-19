@@ -25,4 +25,4 @@ export default async function CategoriesPage({ searchParams }: Props) {
       searchPlaceholder={"Search category..."}
     />
   );
-};
+}

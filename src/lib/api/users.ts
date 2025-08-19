@@ -1,6 +1,5 @@
 import { UsersListAdmin } from "../types/users";
 
-
 // Admin
 
 export async function getUsersAdmin() {

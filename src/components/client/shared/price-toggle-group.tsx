@@ -1,12 +1,10 @@
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 
-function PriceToggleGroup({...props}: React.ComponentProps<typeof ToggleGroup>) {
+function PriceToggleGroup({
+  ...props
+}: React.ComponentProps<typeof ToggleGroup>) {
   return (
-    <ToggleGroup
-      size="lg"
-      className="gap-3 w-full"
-      {...props}
-    >
+    <ToggleGroup size="lg" className="gap-3 w-full" {...props}>
       <ToggleGroupItem
         value="price_asc"
         aria-label="Toggle Price Ascending"
@@ -23,6 +21,6 @@ function PriceToggleGroup({...props}: React.ComponentProps<typeof ToggleGroup>) 
       </ToggleGroupItem>
     </ToggleGroup>
   );
-};
+}
 
 export { PriceToggleGroup };

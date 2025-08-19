@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
 import { DialogDrawer } from "@/components/admin/shared/dialog-drawer";
-import { Button } from "../../ui/button";
 import { useState } from "react";
-import { z } from "zod"
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -16,19 +15,17 @@ import {
 import { toast } from "sonner";
 import { ScrollArea } from "../ui/scroll-area";
 import { Input } from "../ui/input";
-import {
-  BadToast,
-  GoodToast
-} from "./toasts";
+import { BadToast, GoodToast } from "./toasts";
 import { addProductVariantType } from "@/app/actions/product-variant-types";
+import { Button } from "../ui/button";
 
 const formSchema = z.object({
   nameEn: z.string().min(1).max(50),
   nameRo: z.string().min(1).max(50),
-})
+});
 
 function ProductVariantTypeAdd() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,19 +36,17 @@ function ProductVariantTypeAdd() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const body = JSON.stringify(values)
+    const body = JSON.stringify(values);
     try {
       await addProductVariantType(body);
-      toast(
-        <GoodToast text={"Category added successfully"} />,
-        { position: "top-center" }
-      );
-      setOpen(false)
+      toast(<GoodToast text={"Category added successfully"} />, {
+        position: "top-center",
+      });
+      setOpen(false);
     } catch {
-      toast(
-        <BadToast text={"Category couldn't be added"} />,
-        { position: "top-center" }
-      );
+      toast(<BadToast text={"Category couldn't be added"} />, {
+        position: "top-center",
+      });
     }
   }
 
@@ -75,10 +70,7 @@ function ProductVariantTypeAdd() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          placeholder="English name"
-                          {...field}
-                        />
+                        <Input placeholder="English name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -90,26 +82,17 @@ function ProductVariantTypeAdd() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          placeholder="Romanian name"
-                          {...field}
-                        />
+                        <Input placeholder="Romanian name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <div className="flex gap-1 justify-end">
-                  <Button
-                    size={"sm"}
-                    variant={"destructive"}
-                  >
+                  <Button size={"sm"} variant={"destructive"}>
                     Cancel
                   </Button>
-                  <Button
-                    size={"sm"}
-                    type="submit"
-                  >
+                  <Button size={"sm"} type="submit">
                     Add product variant type
                   </Button>
                 </div>
@@ -120,6 +103,6 @@ function ProductVariantTypeAdd() {
       }
     />
   );
-};
+}
 
 export { ProductVariantTypeAdd };

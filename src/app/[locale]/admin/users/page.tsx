@@ -5,7 +5,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/admin/ui/table";
 import { Badge } from "@/components/admin/ui/badge";
 import { ProductEdit } from "@/components/admin/shared/products/product-edit";
@@ -76,4 +76,4 @@ export default async function ProductsPage() {
       }
     />
   );
-};
+}

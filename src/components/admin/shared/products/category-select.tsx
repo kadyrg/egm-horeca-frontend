@@ -4,14 +4,15 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "../../ui/select";
 
 function CategorySelect({
   categories,
   ...props
-}: React.ComponentProps<typeof Select> &
-{ categories:  CategoryListViewAll[] }) {
+}: React.ComponentProps<typeof Select> & {
+  categories: CategoryListViewAll[];
+}) {
   return (
     <Select {...props}>
       <SelectTrigger className="w-full">
@@ -19,16 +20,13 @@ function CategorySelect({
       </SelectTrigger>
       <SelectContent>
         {categories.map((item) => (
-          <SelectItem
-            key={item.id}
-            value={item.id.toString()}
-          >
+          <SelectItem key={item.id} value={item.id.toString()}>
             {item.nameEn}
           </SelectItem>
         ))}
       </SelectContent>
     </Select>
   );
-};
+}
 
 export { CategorySelect };

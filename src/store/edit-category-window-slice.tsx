@@ -5,7 +5,7 @@ type EditCategoryWindowState = {
 };
 
 const initialState: EditCategoryWindowState = {
-  id: 0
+  id: 0,
 };
 
 const editCategoryWindowSlice = createSlice({
@@ -13,10 +13,10 @@ const editCategoryWindowSlice = createSlice({
   initialState,
   reducers: {
     setEditCategoryWindowState(state, action: PayloadAction<number>) {
-      state.id = action.payload
+      state.id = action.payload;
     },
   },
 });
 
-export const { setEditCategoryWindowState } = editCategoryWindowSlice.actions
-export default editCategoryWindowSlice.reducer
+export const { setEditCategoryWindowState } = editCategoryWindowSlice.actions;
+export default editCategoryWindowSlice.reducer;

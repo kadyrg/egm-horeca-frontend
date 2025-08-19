@@ -2,7 +2,11 @@ import { AdminSidebar } from "@/components/admin/layout/admin-sidebar";
 import { SidebarProvider } from "@/components/admin/ui/sidebar";
 import AdminStoreProvider from "@/store/admin-store-provider";
 
-export default async function Layout({ children } : { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <AdminStoreProvider>
       <SidebarProvider>
@@ -13,4 +17,4 @@ export default async function Layout({ children } : { children: React.ReactNode 
       </SidebarProvider>
     </AdminStoreProvider>
   );
-};
+}

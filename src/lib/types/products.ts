@@ -1,6 +1,6 @@
 // Admin
 
-import { Category } from "./types";
+import { Category } from "./metadata";
 
 export type ProductsListView = {
   id: number;
@@ -13,7 +13,7 @@ export type ProductsListView = {
   categoryId: number;
   status: boolean;
   isTop: boolean;
-  variantsCount: string;
+  variantsCount: number;
   mainImage: string | null;
   extraImage1: string | null;
   extraImage2: string | null;
@@ -31,7 +31,6 @@ export type ProductsListAdmin = {
   totalPages: number;
   page: number;
 };
-
 
 // Client
 
@@ -65,4 +64,4 @@ export type ProductDetail = {
   mainImage: string;
   price: number;
   category: Category;
-}
+};

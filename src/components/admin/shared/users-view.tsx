@@ -1,7 +1,5 @@
 function UsersView() {
-  return (
-    <></>
-  );
-};
+  return <></>;
+}
 
 export { UsersView };

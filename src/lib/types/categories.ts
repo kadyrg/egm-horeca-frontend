@@ -20,4 +20,4 @@ export type CategoryListAdmin = {
   last: number;
   totalPages: number;
   page: number;
-}
+};

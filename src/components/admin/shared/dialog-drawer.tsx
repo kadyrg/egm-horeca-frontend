@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/client/ui/drawer"
+} from "@/components/client/ui/drawer";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,7 @@ type DialogDrawerProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   trigger: React.ReactNode;
-  body: React.ReactNode
+  body: React.ReactNode;
 };
 
 function DialogDrawer({
@@ -29,29 +29,25 @@ function DialogDrawer({
   isOpen,
   onOpenChange,
   trigger,
-  body
-} : DialogDrawerProps) {
+  body,
+}: DialogDrawerProps) {
   const isMobile = useIsMobile();
 
-  if (isMobile) return (
-    <Drawer open={isOpen} onOpenChange={onOpenChange}>
-      <DrawerTrigger asChild>
-        {trigger}
-      </DrawerTrigger>
-      <DrawerContent className="p-5">
-        <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
-        </DrawerHeader>
-        {body}
-      </DrawerContent>
-    </Drawer>
-  );
+  if (isMobile)
+    return (
+      <Drawer open={isOpen} onOpenChange={onOpenChange}>
+        <DrawerTrigger asChild>{trigger}</DrawerTrigger>
+        <DrawerContent className="p-5">
+          <DrawerHeader>
+            <DrawerTitle>{title}</DrawerTitle>
+          </DrawerHeader>
+          {body}
+        </DrawerContent>
+      </Drawer>
+    );
   return (
-    <Dialog open={isOpen}
-      onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        {trigger}
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-h-[calc(100vh-100px)] overflow-hidden grid grid-rows-[auto_1fr] gap-0 p-0 ">
         <DialogHeader className="px-5 py-5 shadow-xs shrink-0">
           <DialogTitle>{title}</DialogTitle>
@@ -60,6 +56,6 @@ function DialogDrawer({
       </DialogContent>
     </Dialog>
   );
-};
+}
 
 export { DialogDrawer };
