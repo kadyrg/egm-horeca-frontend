@@ -19,9 +19,7 @@ export async function getUserProductLikes() {
 export async function addUserProductLike(productId: number) {
   const cookieStore = await cookies();
   const likesStore = cookieStore.get("likes")?.value;
-
   let likes: string[] = [];
-
   if (likesStore) {
     try {
       const parsed = JSON.parse(likesStore);
@@ -35,14 +33,13 @@ export async function addUserProductLike(productId: number) {
 
   const idStr = productId.toString();
 
-  // Avoid duplicates
   if (!likes.includes(idStr)) {
     likes.push(idStr);
   }
 
   cookieStore.set("likes", JSON.stringify(likes), {
     path: "/",
-    maxAge: 60 * 60 * 24 * 30 * 12, // 1 month
+    maxAge: 60 * 60 * 24 * 30 * 12, // 1 year
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
