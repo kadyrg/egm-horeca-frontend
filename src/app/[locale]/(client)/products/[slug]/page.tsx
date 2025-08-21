@@ -1,10 +1,10 @@
-import { Section } from "@/components/client/ui/section";
-import { HorizontalFlexProducts } from "@/components/client/shared/horizontal-flex-products";
-import { ProductDetail } from "@/components/client/shared/product";
 import { Metadata } from "next";
 import { getProduct } from "@/lib/api/products";
 import { getProductPageMetadata } from "@/lib/api/metadata";
 import { Product } from "@/lib/types/products";
+import { ProductDetail } from "@/components/shared/product";
+import { HorizontalFlexProducts } from "@/components/shared/horizontal-flex-products";
+import { Section } from "@/components/ui/section";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const fetchProducts = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
+    const res = await fetch(`${process.env.API_URL}/products`);
     if (!res.ok) {
       return [];
     }
@@ -66,7 +66,7 @@ async function Related({ title }: { title: string }) {
   const isDev = process.env.NODE_ENV === "development";
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/products/top`,
+    `${process.env.API_URL}/products/top`,
     {
       cache: isDev ? "no-cache" : "force-cache",
     },

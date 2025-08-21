@@ -1,23 +1,12 @@
-// Admin
-
-export type CategoryListView = {
+export type Category = {
   id: number;
-  nameEn: string;
-  nameRo: string;
-  productCount: number;
+  name: string;
+  slug: string;
 };
 
-export type CategoryListViewAll = {
-  id: number;
-  nameEn: string;
-  nameRo: string;
-};
-
-export type CategoryListAdmin = {
-  data: CategoryListView[];
-  total: number;
-  initial: number;
-  last: number;
+export type CategoryDetail = {
+  name: string;
+  image: string;
+  totalProducts: number;
   totalPages: number;
-  page: number;
 };

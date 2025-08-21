@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Section } from "@/components/client/ui/section";
+import { Section } from "@/components/ui/section";
 import Image from "next/image";
-import { AppPagination } from "@/components/client/shared/pagination";
-import { PageProvider } from "@/components/client/shared/page-provider";
+import { AppPagination } from "@/components/shared/pagination";
+import { PageProvider } from "@/components/shared/page-provider";
 import { getCategoryDetail } from "@/lib/api/categories";
 
 interface Props {
@@ -35,7 +35,7 @@ export default async function Layout({ children, params }: Props) {
           <Image
             width={1920}
             height={384}
-            src={`${process.env.BACKEND_URL}/${data.image}`}
+            src={data.image}
             className="aspect-7/2 md:aspect-5/1 object-cover"
             alt={data.name}
           />

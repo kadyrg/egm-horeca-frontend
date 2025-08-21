@@ -1,38 +1,4 @@
-// Admin
-
-import { Category } from "./metadata";
-
-export type ProductsListView = {
-  id: number;
-  nameEn: string;
-  nameRo: string;
-  descriptionEn: string;
-  descriptionRo: string;
-  price: number;
-  stock: number;
-  categoryId: number;
-  status: boolean;
-  isTop: boolean;
-  variantsCount: number;
-  mainImage: string | null;
-  extraImage1: string | null;
-  extraImage2: string | null;
-  extraImage3: string | null;
-  extraImage4: string | null;
-  extraImage5: string | null;
-  extraImage6: string | null;
-};
-
-export type ProductsListAdmin = {
-  data: ProductsListView[];
-  total: number;
-  initial: number;
-  last: number;
-  totalPages: number;
-  page: number;
-};
-
-// Client
+import { Category } from "./categories";
 
 export type ProductFullDetail = {
   id: number;
@@ -61,7 +27,8 @@ export type ProductDetail = {
   id: number;
   name: string;
   description: string;
-  mainImage: string;
+  images: string[];
   price: number;
   category: Category;
+
 };

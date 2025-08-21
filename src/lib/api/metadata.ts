@@ -13,7 +13,7 @@ async function getMetadata({ path }: { path: string }) {
   const isDev = process.env.NODE_ENV === "development";
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/metadata/${path}`,
+    `${process.env.API_URL}/metadata/${path}`,
     {
       headers: { "Accept-Language": locale },
       cache: isDev ? "no-cache" : "force-cache",

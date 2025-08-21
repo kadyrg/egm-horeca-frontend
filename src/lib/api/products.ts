@@ -1,31 +1,17 @@
 import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { CartItem } from "../types/metadata";
 import { cookies } from "next/headers";
 import {
   Product,
   ProductDetail,
   ProductFullDetail,
-  ProductsListAdmin,
 } from "../types/products";
-
-// Admin
-
-export async function getProductsAdmin() {
-  const res = await fetch(`${process.env.ADMIN_API_URL}/products`, {
-    method: "GET",
-    next: { tags: ["products"] },
-  });
-  const data: ProductsListAdmin = await res.json();
-  return data;
-}
-
-// Client
+import { CartItem } from "../types/cart-items";
 
 export async function getTopProducts() {
   const locale = await getLocale();
 
-  const res = await fetch(`${process.env.CLIENT_API_URL}/products/top`, {
+  const res = await fetch(`${process.env.API_URL}/products/top`, {
     headers: { "Accept-Language": locale },
   });
   const data: Product[] = await res.json();
@@ -35,7 +21,7 @@ export async function getTopProducts() {
 export async function getNewProducts() {
   const locale = await getLocale();
 
-  const res = await fetch(`${process.env.CLIENT_API_URL}/products/new`, {
+  const res = await fetch(`${process.env.API_URL}/products/new`, {
     headers: { "Accept-Language": locale },
   });
   const data: Product[] = await res.json();
@@ -47,24 +33,19 @@ export async function getProduct({ slug }: { slug: string }) {
   const locale = await getLocale();
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/products/${slug}`,
+    `${process.env.API_URL}/products/${slug}`,
     {
       headers: { "Accept-Language": locale },
       cache: isDev ? "no-cache" : "force-cache",
     },
   );
-  if (!res.ok) {
-    notFound();
-  }
   const data: ProductDetail = await res.json();
   return data;
 }
 
-// Above don't touch
-
 export async function getAllProducts() {
   const isDev = process.env.NODE_ENV === "development";
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
+  const res = await fetch(`${process.env.API_URL}/products`, {
     cache: isDev ? "no-cache" : "force-cache",
   });
   const data: ProductFullDetail[] = await res.json();

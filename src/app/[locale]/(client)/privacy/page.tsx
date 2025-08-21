@@ -1,4 +1,4 @@
-import { Section } from "@/components/client/ui/section";
+import { Section } from "@/components/ui/section";
 
 export default async function PrivacyPage() {
   return (

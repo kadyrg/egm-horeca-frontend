@@ -1,5 +1,4 @@
-import { UnauthorizedEroor } from "@/lib/errors";
-import { Token } from "@/lib/types/metadata";
+import { Token } from "@/lib/types/token";
 import { cookies } from "next/headers";
 
 export async function getValidAccessToken(): Promise<string> {
@@ -13,7 +12,7 @@ export async function getValidAccessToken(): Promise<string> {
     }
 
     const refreshRes = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+      `${process.env.AUTH_URL}/refresh`,
       {
         method: "POST",
         headers: {

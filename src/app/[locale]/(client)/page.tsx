@@ -1,5 +1,5 @@
-import { Hero } from "@/components/client/shared/hero";
-import { HorizontalFlexProducts } from "@/components/client/shared/horizontal-flex-products";
+import { Hero } from "@/components/shared/hero";
+import { HorizontalFlexProducts } from "@/components/shared/horizontal-flex-products";
 import { getHomePageMetadata } from "@/lib/api/metadata";
 import { getNewProducts, getTopProducts } from "@/lib/api/products";
 import { Metadata } from "next";

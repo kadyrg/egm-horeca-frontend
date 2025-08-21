@@ -1,9 +1,9 @@
-import { Header } from "@/components/client/layout/header";
-import { TopBar } from "@/components/client/layout/top-bar";
-import { Footer } from "@/components/client/layout/footer";
-import { BottomNav } from "@/components/client/layout/bottom-nav";
+import { Header } from "@/components/layout/header";
+import { TopBar } from "@/components/layout/top-bar";
+import { Footer } from "@/components/layout/footer";
+import { BottomNav } from "@/components/layout/bottom-nav";
 import { getRootLayoutMetadata } from "@/lib/api/metadata";
-import { StateInitializers } from "@/components/client/shared/state-initializers";
+import { StateInitializers } from "@/components/shared/state-initializers";
 import StoreProvider from "@/store/store-provider";
 
 export default async function Layout({

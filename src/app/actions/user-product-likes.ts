@@ -1,8 +1,7 @@
 "use server";
 
-import { UnauthorizedEroor } from "@/lib/errors";
+import { UserProductLike } from "@/lib/types/user-product-likes";
 import { getValidAccessToken } from "./auth";
-import { UserProductLike } from "@/lib/types/metadata";
 import { cookies } from "next/headers";
 
 export async function getUserProductLikes() {
@@ -22,7 +21,7 @@ export async function getUserProductLikes() {
   }
   if (accessToken) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/user_product_likes`,
+      `${process.env.API_URL}/user_product_likes`,
       {
         method: "GET",
         headers: {
@@ -42,7 +41,7 @@ export async function getUserProductLikes() {
       );
       if (likesNotInBackend.length !== 0) {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/user_product_likes/add_bulk`,
+          `${process.env.API_URL}/user_product_likes/add_bulk`,
           {
             method: "POST",
             headers: {
@@ -97,7 +96,7 @@ export async function addUserProductLike(productId: number) {
 
   if (accessToken) {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user_product_likes`, {
+      await fetch(`${process.env.API_URL}/user_product_likes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +140,7 @@ export async function deleteUserProductLike(productId: number) {
 
   if (accessToken) {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user_product_likes`, {
+      await fetch(`${process.env.API_URL}/user_product_likes`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

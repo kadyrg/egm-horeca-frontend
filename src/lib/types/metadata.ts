@@ -74,34 +74,3 @@ export type VerifyEmailPage = {
   title: string;
   description: string;
 };
-
-// Cart Item
-
-export type CartItem = {
-  productId: string;
-  quantity: string;
-};
-
-// Auth
-
-export type Token = {
-  accessToken: string;
-  refreshToken: string;
-};
-
-export type UserProductLike = {
-  productId: number;
-};
-
-export type Category = {
-  id: number;
-  name: string;
-  slug: string;
-};
-
-export type CategoryDetail = {
-  name: string;
-  image: string;
-  totalProducts: number;
-  totalPages: number;
-};

@@ -1,8 +1,7 @@
 "use server";
 
-import { CartItem } from "@/lib/types/metadata";
+import { CartItem } from "@/lib/types/cart-items";
 import { getValidAccessToken } from "./auth";
-import { UnauthorizedEroor } from "@/lib/errors";
 import { cookies } from "next/headers";
 
 export async function addProductToCart(productId: number) {
@@ -20,7 +19,7 @@ export async function addProductToCart(productId: number) {
   if (accessToken) {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cart_items`,
+        `${process.env.API_URL}/cart_items`,
         {
           method: "POST",
           headers: {
@@ -31,7 +30,7 @@ export async function addProductToCart(productId: number) {
         },
       );
       if (res.status === 401) {
-        throw new UnauthorizedEroor();
+        throw new Error();
       } else if (!res.ok) {
         throw new Error("Failed to add to cart");
       }
@@ -87,7 +86,7 @@ export async function getCartItems() {
 
   if (accessToken) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/cart_items`,
+      `${process.env.API_URL}/api/cart_items`,
       {
         method: "GET",
         headers: {
@@ -97,7 +96,7 @@ export async function getCartItems() {
       },
     );
     if (res.status === 401) {
-      throw new UnauthorizedEroor();
+      throw new Error();
     } else if (!res.ok) {
       throw new Error("Failed to add to cart");
     }

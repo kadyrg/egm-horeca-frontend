@@ -1,6 +1,6 @@
-import { GoogleAuth } from "@/components/client/shared/google-auth";
-import { LoginForm } from "@/components/client/shared/login-form";
-import { Or } from "@/components/client/shared/or";
+import { GoogleAuth } from "@/components/shared/google-auth";
+import { LoginForm } from "@/components/shared/login-form";
+import { Or } from "@/components/shared/or";
 import { Link } from "@/i18n/navigation";
 import { getLoginPageMetadata } from "@/lib/api/metadata";
 import { Metadata } from "next";
