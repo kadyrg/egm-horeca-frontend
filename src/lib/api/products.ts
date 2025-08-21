@@ -12,7 +12,9 @@ export async function getTopProducts() {
   const locale = await getLocale();
 
   const res = await fetch(`${process.env.API_URL}/products/top`, {
+    cache: "force-cache",
     headers: { "Accept-Language": locale },
+    next: { tags: [`products`] },
   });
   const data: Product[] = await res.json();
   return data;
@@ -22,31 +24,33 @@ export async function getNewProducts() {
   const locale = await getLocale();
 
   const res = await fetch(`${process.env.API_URL}/products/new`, {
+    cache: "force-cache",
     headers: { "Accept-Language": locale },
+    next: { tags: [`products`] },
   });
   const data: Product[] = await res.json();
   return data;
 }
 
 export async function getProduct({ slug }: { slug: string }) {
-  const isDev = process.env.NODE_ENV === "development";
   const locale = await getLocale();
-
-  const res = await fetch(
-    `${process.env.API_URL}/products/${slug}`,
-    {
+  const res = await fetch(`${process.env.API_URL}/products/${slug}`, {
+      cache: "force-cache",
       headers: { "Accept-Language": locale },
-      cache: isDev ? "no-cache" : "force-cache",
-    },
+      next: { tags: [`product-${slug}`] },
+    }
   );
+  if (!res.ok) {
+    return notFound();
+  }
   const data: ProductDetail = await res.json();
   return data;
 }
 
 export async function getAllProducts() {
-  const isDev = process.env.NODE_ENV === "development";
   const res = await fetch(`${process.env.API_URL}/products`, {
-    cache: isDev ? "no-cache" : "force-cache",
+    cache: "force-cache",
+    next: { tags: [`products`] },
   });
   const data: ProductFullDetail[] = await res.json();
   return data;

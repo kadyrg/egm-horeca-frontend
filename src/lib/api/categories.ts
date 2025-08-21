@@ -3,10 +3,9 @@ import { Product } from "../types/products";
 import { Category, CategoryDetail } from "../types/categories";
 
 export async function getCategories() {
-  const isDev = process.env.NODE_ENV === "development";
   const locale = await getLocale();
   const res = await fetch(`${process.env.API_URL}/categories`, {
-    cache: isDev ? "no-cache" : "force-cache",
+    cache: "force-cache",
     headers: { "Accept-Language": locale },
   });
   const data: Category[] = await res.json();

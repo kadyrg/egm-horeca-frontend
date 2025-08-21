@@ -10,13 +10,12 @@ import {
 
 async function getMetadata({ path }: { path: string }) {
   const locale = await getLocale();
-  const isDev = process.env.NODE_ENV === "development";
-
   const res = await fetch(
     `${process.env.API_URL}/metadata/${path}`,
     {
       headers: { "Accept-Language": locale },
-      cache: isDev ? "no-cache" : "force-cache",
+      cache: "force-cache",
+      next: { tags: [`metadata`] },
     },
   );
   const data = await res.json();
