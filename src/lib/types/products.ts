@@ -30,5 +30,4 @@ export type ProductDetail = {
   images: string[];
   price: number;
   category: Category;
-
 };

@@ -19,29 +19,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// export async function generateStaticParams() {
-//   const fetchProducts = async () => {
-//     const res = await fetch(`${process.env.API_URL}/products`);
-//     if (!res.ok) {
-//       return [];
-//     }
-//     return res.json();
-//   };
-
-//   const products = await fetchProducts();
-
-//   return [
-//     ...products.map((p: { slugEn: string }) => ({
-//       locale: "en",
-//       productSlug: p.slugEn,
-//     })),
-//     ...products.map((p: { slugRo: string }) => ({
-//       locale: "ro",
-//       productSlug: p.slugRo,
-//     })),
-//   ];
-// }
-
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const metadata = await getProductPageMetadata();

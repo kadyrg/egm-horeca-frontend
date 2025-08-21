@@ -5,7 +5,6 @@ import { Category, CategoryDetail } from "../types/categories";
 export async function getCategories() {
   const locale = await getLocale();
   const res = await fetch(`${process.env.API_URL}/categories`, {
-    cache: "force-cache",
     headers: { "Accept-Language": locale },
   });
   const data: Category[] = await res.json();
@@ -14,10 +13,7 @@ export async function getCategories() {
 
 export async function getCategoryDetail({ slug }: { slug: string }) {
   const locale = await getLocale();
-  const isDev = process.env.NODE_ENV === "development";
-
   const res = await fetch(`${process.env.API_URL}/categories/${slug}`, {
-    cache: isDev ? "no-cache" : "force-cache",
     headers: { "Accept-Language": locale },
   });
   const data: CategoryDetail = await res.json();
@@ -32,11 +28,8 @@ export async function getCategoryProducts({
   page: number;
 }) {
   const locale = await getLocale();
-  const isDev = process.env.NODE_ENV === "development";
   const res = await fetch(
-    `${process.env.API_URL}/categories/${slug}/products?page=${page}`,
-    {
-      cache: isDev ? "no-cache" : "force-cache",
+    `${process.env.API_URL}/categories/${slug}/products?page=${page}`, {
       headers: { "Accept-Language": locale },
     },
   );
