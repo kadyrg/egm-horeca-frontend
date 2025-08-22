@@ -1,7 +1,7 @@
 "use client";
 
 import { getCartItems } from "@/app/actions/cart-items";
-import { setCartItemCount } from "@/store/cart-item-count-slice";
+import { setCartItems } from "@/store/cart-items-slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -10,8 +10,8 @@ function CartItemsInitializer() {
   useEffect(() => {
     async function handleCartItems() {
       const cartItems = await getCartItems();
-      const count = cartItems.length;
-      dispatch(setCartItemCount(count));
+      const productIds: number[] = cartItems.map((item) => Number(item.productId));
+      dispatch(setCartItems(productIds));
     }
     handleCartItems();
   }, [dispatch]);

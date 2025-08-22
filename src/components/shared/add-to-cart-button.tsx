@@ -1,12 +1,13 @@
 "use client";
 
 import { addProductToCart } from "@/app/actions/cart-items";
-import { startTransition } from "react";
-import { toast } from "sonner";
-import { Check } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { addCartItemCount } from "@/store/cart-item-count-slice";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCartItem } from "@/store/cart-items-slice";
 import { Button } from "../ui/button";
+import { ShoppingCart } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { RootState } from "@/store/store";
 
 function AddToCartButton({
   productId,
@@ -16,24 +17,16 @@ function AddToCartButton({
   text: string;
 }) {
   const dispatch = useDispatch();
-
-  async function handleAddToCart() {
-    dispatch(addCartItemCount());
-    startTransition(async () => {
-      await addProductToCart(productId);
-      toast(
-        <div className="flex items-center gap-3 text-green-700">
-          <Check />
-          Product successfully added to your cart
-        </div>,
-        { position: "top-center" },
-      );
-    });
+  const cartItems = useSelector((state: RootState) => state.cartItemState.productIds);
+  const isActive = cartItems.includes(productId);
+  async function handleClick() {
+    dispatch(addCartItem(productId));
+    await addProductToCart(productId);
   }
 
   return (
-    <Button className="w-full" onClick={handleAddToCart}>
-      {text}
+    <Button className={cn('w-full', isActive && 'pointer-events-none')} onClick={handleClick}>
+      <ShoppingCart className={cn(isActive && 'fill-background')} />{!isActive ? text : "Added"}
     </Button>
   );
 }

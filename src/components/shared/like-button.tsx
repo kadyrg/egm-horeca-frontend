@@ -28,15 +28,13 @@ function LikeButton({
   const isActive = userProductLikes.includes(productId);
 
   async function handleClick() {
-    try {
-      if (!isActive) {
-        dispatch(addUserProductLikeState(Number(productId)));
-        await addUserProductLike(productId);
-      } else {
-        dispatch(deleteUserProductLikeState(productId));
-        await deleteUserProductLike(productId);
-      }
-    } catch {}
+    if (!isActive) {
+      dispatch(addUserProductLikeState(productId));
+      await addUserProductLike(productId);
+    } else {
+      dispatch(deleteUserProductLikeState(productId));
+      await deleteUserProductLike(productId);
+    }
   }
   return (
     <Button

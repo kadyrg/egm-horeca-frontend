@@ -7,8 +7,8 @@ import { RootState } from "@/store/store";
 import { cn } from "@/lib/utils";
 
 function CartButton() {
-  const cartItemCount = useSelector(
-    (state: RootState) => state.cartItemCountState.state,
+  const cartItem = useSelector(
+    (state: RootState) => state.cartItemState.productIds,
   );
 
   return (
@@ -19,10 +19,10 @@ function CartButton() {
       <span
         className={cn(
           "absolute -top-[3px] -right-[3px]  items-center justify-center rounded-full bg-primary text-background text-[11px] w-[18px] h-[18px]",
-          cartItemCount ? "inline-flex" : "hidden",
+          cartItem.length !== 0 ? "inline-flex" : "hidden",
         )}
       >
-        {cartItemCount}
+        {cartItem.length}
       </span>
       <ShoppingBagIcon />
     </Link>
