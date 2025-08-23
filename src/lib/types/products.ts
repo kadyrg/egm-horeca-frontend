@@ -23,6 +23,16 @@ export type Product = {
   slug: string;
 };
 
+type VariantProducts = {
+  variantName: string
+  slug: string
+}
+
+type Variant = {
+  variantTypeName: string;
+  products: VariantProducts[];
+}
+
 export type ProductDetail = {
   id: number;
   name: string;
@@ -30,4 +40,5 @@ export type ProductDetail = {
   images: string[];
   price: number;
   category: Category;
+  variants: Variant[]
 };

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 function CartButton() {
   const cartItem = useSelector(
-    (state: RootState) => state.cartItemState.productIds,
+    (state: RootState) => state.cartItemState.state,
   );
 
   return (

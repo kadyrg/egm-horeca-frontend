@@ -1,4 +1,4 @@
-import { ProductList } from "@/components/shared/products-list";
+import { CartItemsList } from "@/components/shared/cart-items-list";
 import { Section } from "@/components/ui/section";
 import { getCartProducts } from "@/lib/api/products";
 import { Product } from "@/lib/types/products";
@@ -22,7 +22,7 @@ export default async function CartPage() {
       <Section>
         <h1 className="text-xl font-bold">My Cart</h1>
       </Section>
-      <Section><ProductList data={products} /></Section>
+      <Section><CartItemsList data={products} /></Section>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Section } from "../ui/section";
 import { AddToCart } from "./add-to-cart";
 import { getProduct } from "@/lib/api/products";
 import { ProductCarousel } from "./product-carousel";
+import { cn } from "@/lib/utils";
 
 async function ProductDetail({
   slug,
@@ -32,6 +33,18 @@ async function ProductDetail({
             <h2 className="text-xl md:text-2xl font-semibold py-2 text-green-600">
               {data.price} lei
             </h2>
+            <div>
+              {data.variants.map((item, index) => (
+                <div key={index}>
+                  <h3>{item.variantTypeName}</h3>
+                  <div className="flex gap-[6px] py-2">
+                    {item.products.map((subitem, index) => (
+                      <Link key={index} href={`/products/${subitem.slug}`} className={cn('border rounded-full py-1 px-3 text-sm font-medium', slug===subitem.slug && 'border-primary bg-primary text-background')}>{subitem.variantName}</Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="flex gap-2 pt-2 py-4">
               <div className="basis-5/9">
                 <AddToCart productId={data.id} />

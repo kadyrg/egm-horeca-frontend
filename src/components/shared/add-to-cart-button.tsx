@@ -17,10 +17,10 @@ function AddToCartButton({
   text: string;
 }) {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state: RootState) => state.cartItemState.productIds);
-  const isActive = cartItems.includes(productId);
+  const cartItems = useSelector((state: RootState) => state.cartItemState.state);
+  const isActive = cartItems.some((item) => item.productId === productId);
   async function handleClick() {
-    dispatch(addCartItem(productId));
+    dispatch(addCartItem({productId: productId, quantity: 1}));
     await addProductToCart(productId);
   }
 

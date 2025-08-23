@@ -43,3 +43,72 @@ export async function getCartItems(): Promise<CartItem[]> {
   }
   return cartItems;
 }
+
+export async function setCartItemQuantity(productId: number, quantity: number) {
+  const cookieStore = await cookies();
+  const cartitemsStore = cookieStore.get("cartItems")?.value;
+  let cartItems: CartItem[] = [];
+
+  if (cartitemsStore) {
+    try {
+      cartItems = JSON.parse(cartitemsStore);
+    } catch {
+      cartItems = [];
+    }
+  }
+
+  if (quantity===0) {
+    const idStr = productId.toString();
+    cartItems = cartItems.filter((item) => item.productId !== idStr);
+      cookieStore.set("cartItems", JSON.stringify(cartItems), {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30 * 12, // 1 year
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+    return cartItems;
+  }
+
+  const idStr = productId.toString();
+
+  const cartItem = cartItems.find((item) => item.productId === idStr)
+  if (cartItem) {
+    cartItem.quantity = quantity.toString();
+  }
+  cookieStore.set("cartItems", JSON.stringify(cartItems), {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30 * 12, // 1 year
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+  return cartItems;
+}
+
+
+export async function deleteCartItem(productId: number) {
+  const cookieStore = await cookies();
+  const cartitemsStore = cookieStore.get("cartItems")?.value;
+  let cartItems: CartItem[] = [];
+
+  if (cartitemsStore) {
+    try {
+      cartItems = JSON.parse(cartitemsStore);
+    } catch {
+      cartItems = [];
+    }
+  }
+  const idStr = productId.toString();
+
+  cartItems = cartItems.filter((item) => item.productId !== idStr);
+
+  cookieStore.set("cartItems", JSON.stringify(cartItems), {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30 * 12, // 1 year
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+  return cartItems;
+}
