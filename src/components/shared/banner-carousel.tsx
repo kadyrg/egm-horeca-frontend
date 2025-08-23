@@ -12,11 +12,11 @@ function BannerCarousel({data}: {data: Banner[]}) {
   )
 
   return (
-    <Carousel opts={{align: "start", loop: true}} plugins={[plugin.current]} className="overflow-hidden border-1">
+    <Carousel opts={{align: "start", loop: true}} plugins={[plugin.current]} className="overflow-hidden border-1 rounded-md">
       <CarouselContent>
         {data.map((item) => (
           <CarouselItem key={item.id}>
-            <Image src={item.image} width={1920} height={512} className='w-full aspect-15/4 object-cover overflow-hidden' alt="image" />
+            <Image src={item.image} width={1920} height={512} className='w-full aspect-15/7 sm:aspect-15/6 md:aspect-15/5 object-cover overflow-hidden rounded-md' alt="image" />
           </CarouselItem>
         ))}
       </CarouselContent>

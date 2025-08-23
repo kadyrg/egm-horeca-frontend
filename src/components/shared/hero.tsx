@@ -6,7 +6,7 @@ async function Hero() {
   const data = await getBanners();
 
   return (
-    <Section variant={"fullWidth"} className="aspect-15/4 !py-0">
+    <Section className="aspect-15/7 sm:aspect-15/6 md:aspect-15/5 !py-0">
       <BannerCarousel data={data} />
     </Section>
   );
